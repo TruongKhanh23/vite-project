@@ -1,12 +1,17 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
 
-function App() {
+import Footer from './component/Footer';
+import Header from './component/Header';
+import Contact from './component/Contact';
+import Hero from './component/Hero';
+const App = () => {
   return (
-    <>
-      <h1>Hello React</h1>
-    </>
-  )
-}
+    <div>
+      <Header/>
+      <Hero/>
+      <Contact/>
+      <Footer/>
+    </div>
+  );
+};
 
-export default App
+export default App;
