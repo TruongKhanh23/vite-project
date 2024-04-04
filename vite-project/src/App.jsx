@@ -1,19 +1,20 @@
+const LoginStatusButton = (status) => {
+  if(status){
+    return <button>Logout</button>
+  } else {
+    return <button>Login</button>
+  }
+}
 
 const App = () => {
 
-  const city = ["Dhaka", "USA", "Delhi", "CTG"]
-
-  return (
-    <div>
-      <ul>
-        {
-          city.map((item, i) => {
-            return <li key={i.toString()}>{item}</li>
-          })
-        }
-      </ul>
-    </div>
-  );
+    return (
+      <div>
+        <h1>Login Status</h1>
+        {LoginStatusButton(false)}
+      </div>
+    );  
+  
 };
 
 export default App;
