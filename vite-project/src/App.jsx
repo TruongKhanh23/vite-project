@@ -1,23 +1,18 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import AboutPage from './pages/AboutPage';
-import ContactPage from "./pages/ContactPage";
-import NotFound from './pages/NotFound';
+import { useRef } from "react";
 
 const App = () => {
 
+  let myHeadLine = useRef();
+
+  const change = () => {
+    myHeadLine.current.classList.remove("text-success")
+    myHeadLine.current.classList.add("text-danger")
+  }
+
   return (
     <div>
-
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage/>}/>
-          <Route path="/about/:id/:name" element={<AboutPage/>}/>
-          <Route path="/contact" element={<ContactPage/>}/>
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-      </BrowserRouter>
-
+      <h1 className="text-success" ref={myHeadLine}>This is Head Line</h1>
+      <button onClick={change}>Click</button>
     </div>
   );
 };
