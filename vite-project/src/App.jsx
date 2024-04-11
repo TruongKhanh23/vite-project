@@ -2,17 +2,23 @@ import { useRef } from "react";
 
 const App = () => {
 
-  let myHeadLine = useRef();
+  let apiData = useRef(null);
+  let myPTag = useRef();
 
-  const change = () => {
-    myHeadLine.current.classList.remove("text-success")
-    myHeadLine.current.classList.add("text-danger")
+  const fetchData = async () => {
+    const response = await fetch("https://dummyjson.com/products")
+    apiData.current = await response.json();
+  }
+
+  const showData = () => {
+    myPTag.current.innerText = JSON.stringify(apiData.current)
   }
 
   return (
     <div>
-      <h1 className="text-success" ref={myHeadLine}>This is Head Line</h1>
-      <button onClick={change}>Click</button>
+      <p ref={myPTag}></p>
+      <button onClick={fetchData}>Call API</button>
+      <button onClick={showData}>Show Data</button>
     </div>
   );
 };
