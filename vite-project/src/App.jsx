@@ -2,27 +2,37 @@ import { useState } from "react";
 
 const App = () => {
 
-  const [myObj, setMyObj] = useState({
-    key1: "Truong 1",
-    key2: "Truong 2",
-    key3: "Truong 3",
-  })
+  const [list, setList] = useState([])
+  const [item, setItem] = useState("")
 
-  const change = () => {
-    setMyObj(
-      prevObj =>({
-        ...prevObj, 
-        key1: "Hi how are you?",
-        key2: "what is your name"
-      })
-    )
+  const addToList = () => {
+    list.push(item)
+    setList([...list])
+  }
+
+  const removeItem = (index) => {
+    list.splice(index, 1)
+    setList([...list])
   }
 
   return (
     <div>
-      <h1>{myObj.key1}</h1>
-      <h1>{myObj.key2}</h1>
-      <button onClick={change}>Change</button>
+      <table>
+        <tbody>
+          {
+            list.length !== 0 ? (list.map((element, index) => {
+              return (
+              <tr>
+                <td>{element}</td>
+                <td><button onClick={()=>{removeItem(index)}}>Remove</button></td>
+              </tr>
+              )
+            })) : (<tr></tr>)
+          }
+        </tbody>
+      </table>
+      <input onChange={(e)=>setItem(e.target.value)} placeholder="Item" />
+      <button onClick={addToList}>Add</button>
     </div>
   );
 };
